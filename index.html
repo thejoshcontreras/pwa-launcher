@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>QuickLink App Launcher</title>
     
-    <!-- PWA & iOS Customization Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="QuickLink">
     
-    <!-- Default Touch Icon (iOS App Icon) using an elegant SVG representing links and communication -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180' width='180' height='180'><rect width='180' height='180' rx='40' fill='%23007AFF'/><path d='M50 90c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40z' fill='none' stroke='white' stroke-width='8'/><path d='M70 75 l40 30 M70 105 l40 -30' stroke='white' stroke-width='10' stroke-linecap='round'/></svg>">
+    <link class="dark-hidden" rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180' width='180' height='180'><rect width='180' height='180' rx='40' fill='%23007AFF'/><path d='M50 90c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40z' fill='none' stroke='white' stroke-width='8'/><path d='M70 75 l40 30 M70 105 l40 -30' stroke='white' stroke-width='10' stroke-linecap='round'/></svg>">
 
-    <!-- Tailwind CSS Engine for Native Looks -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -53,28 +50,15 @@
 </head>
 <body class="h-full bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
 
-    <!-- App Container (Constrained viewport matching mobile look beautifully) -->
     <div class="flex flex-col h-full max-w-md mx-auto relative overflow-hidden bg-white dark:bg-slate-950 border-x border-slate-200/50 dark:border-slate-800/50 shadow-2xl">
         
-        <!-- Premium Header Panel (Includes status bar space protection via viewport-fit) -->
         <header class="pt-12 pb-4 px-6 border-b border-slate-100 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 sticky top-0 z-50 ios-blur flex justify-between items-center">
             <div>
                 <span class="text-xs font-semibold tracking-widest text-blue-500 uppercase">iOS Communication Hub</span>
                 <h1 class="text-2xl font-bold tracking-tight mt-0.5">QuickLink PWA</h1>
             </div>
             
-            <!-- Dark Mode and Quick Reset buttons -->
             <div class="flex gap-2">
-                <button onclick="toggleDarkMode()" class="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95 transition-transform" aria-label="Toggle Dark Mode">
-                    <!-- Sun Icon -->
-                    <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 1111.3 6c3.978 0 7.399 2.56 8.7 6H15a3 3 0 00-3 3v3.7c-3.44-1.3-6-4.72-6-8.7z"/>
-                    </svg>
-                    <!-- Moon Icon -->
-                    <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                    </svg>
-                </button>
                 <button onclick="resetAllFields()" class="p-2.5 rounded-full bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 active:scale-95 transition-transform" title="Clear Drafts">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -83,10 +67,8 @@
             </div>
         </header>
 
-        <!-- Main Workspace (Scrollable area) -->
         <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6 no-scrollbar pb-24">
             
-            <!-- Quick Info Callout -->
             <div class="bg-blue-50/70 dark:bg-blue-950/20 border border-blue-100/50 dark:border-blue-900/30 rounded-2xl p-4 flex items-start gap-3">
                 <div class="p-2 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,19 +78,17 @@
                 <div>
                     <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Device Handshake Ready</h4>
                     <p class="text-xs text-blue-700/80 dark:text-blue-300/70 mt-0.5 leading-relaxed">
-                        Values entered below persist inside your browser so you don't have to write them again. Buttons automatically launch your system-assigned apps.
+                        Values entered below persist inside your browser. Buttons automatically launch your native apps without adding automated template text.
                     </p>
                 </div>
             </div>
 
-            <!-- Form Cards Section -->
             <div class="space-y-4">
                 <div class="flex justify-between items-center px-1">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contact Details</h2>
                     <span class="text-[10px] text-green-500 font-medium bg-green-50 dark:bg-green-950/30 px-2 py-0.5 rounded-full border border-green-100/50 dark:border-green-900/20">Auto-saved</span>
                 </div>
 
-                <!-- Dual Layout for Name -->
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-1">
                         <label for="first-name" class="block text-xs font-medium text-slate-500 dark:text-slate-400 pl-1">First Name</label>
@@ -122,7 +102,6 @@
                     </div>
                 </div>
 
-                <!-- Single Column Inputs -->
                 <div class="space-y-1">
                     <label for="phone" class="block text-xs font-medium text-slate-500 dark:text-slate-400 pl-1">Target Phone Number</label>
                     <input type="tel" id="phone" oninput="saveAndSync()" placeholder="+1 (555) 019-2834"
@@ -152,22 +131,21 @@
                 </div>
             </div>
 
-            <!-- Previews Panel -->
             <div class="bg-slate-100/50 dark:bg-slate-900/30 border border-slate-200/40 dark:border-slate-800/60 rounded-2xl p-5 space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Live Draft Preview</h3>
-                    <span class="text-[10px] bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-semibold px-2 py-0.5 rounded-md">Smart-Formatted</span>
+                    <span class="text-[10px] bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-semibold px-2 py-0.5 rounded-md">Clean Output</span>
                 </div>
                 
                 <div class="space-y-3">
                     <div>
-                        <span class="text-[11px] font-medium text-slate-400 block mb-1">Generated SMS:</span>
+                        <span class="text-[11px] font-medium text-slate-400 block mb-1">Generated SMS Preview:</span>
                         <div id="sms-preview" class="text-xs p-3 rounded-xl bg-slate-200/40 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 italic break-words min-h-[40px]">
                             Awaiting text...
                         </div>
                     </div>
                     <div>
-                        <span class="text-[11px] font-medium text-slate-400 block mb-1">Generated Email Body:</span>
+                        <span class="text-[11px] font-medium text-slate-400 block mb-1">Generated Email Preview:</span>
                         <div id="email-preview" class="text-xs p-3 rounded-xl bg-slate-200/40 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 italic whitespace-pre-wrap break-words min-h-[40px]">
                             Awaiting text...
                         </div>
@@ -177,14 +155,12 @@
 
         </main>
 
-        <!-- Dynamic Modal Box (Custom Alert Replacements) -->
         <div id="custom-alert" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm hidden transition-opacity duration-200 opacity-0">
             <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-100 dark:border-slate-800 transform scale-95 transition-transform duration-200">
                 <div id="alert-icon-container" class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                    <!-- Dynamic Alert Icon -->
-                </div>
+                    </div>
                 <h3 id="alert-title" class="text-center text-lg font-bold">Alert Title</h3>
-                <p id="alert-message" class="text-center text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Alert descriptions will render dynamic feedback information cleanly.</p>
+                <p id="alert-message" class="text-center text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Alert descriptions</p>
                 <div class="mt-6">
                     <button onclick="closeAlert()" class="w-full py-3 px-4 rounded-2xl bg-blue-500 hover:bg-blue-600 active:scale-95 text-white font-medium text-sm transition-transform duration-100">
                         Dismiss
@@ -193,20 +169,15 @@
             </div>
         </div>
 
-        <!-- Sticky Footer Interactive Action Bar -->
         <footer class="absolute bottom-0 inset-x-0 bg-white/95 dark:bg-slate-950/95 border-t border-slate-100 dark:border-slate-800/80 py-4 px-6 ios-blur grid grid-cols-2 gap-4 z-40">
-            <!-- SMS Button Trigger -->
             <button onclick="triggerSMS()" class="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white py-3.5 px-4 rounded-2xl font-semibold text-sm shadow-lg shadow-emerald-500/20 transition-all">
-                <!-- iMessage Icon (Custom SVG) -->
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
                 Send Message
             </button>
 
-            <!-- Mail Button Trigger -->
             <button onclick="triggerEmail()" class="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 active:scale-95 text-white py-3.5 px-4 rounded-2xl font-semibold text-sm shadow-lg shadow-blue-500/20 transition-all">
-                <!-- Mail Icon (Custom SVG) -->
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -216,44 +187,18 @@
 
     </div>
 
-    <!-- PWA & Device Execution Logic Script -->
     <script>
-        // Load configurations and set initial viewport bounds
         window.addEventListener('load', () => {
             loadSavedFields();
             initTheme();
             updateLivePreviews();
         });
 
-        // Toggle Dark/Light UI Settings Customised for high contrast
         function initTheme() {
-            if (localStorage.getItem('theme') === 'dark' || 
-                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('sun-icon').classList.remove('hidden');
-                document.getElementById('moon-icon').classList.add('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('sun-icon').classList.add('hidden');
-                document.getElementById('moon-icon').classList.remove('hidden');
-            }
+            // High contrast dark mode lock matching preferences
+            document.documentElement.classList.add('dark');
         }
 
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                document.getElementById('sun-icon').classList.add('hidden');
-                document.getElementById('moon-icon').classList.remove('hidden');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                document.getElementById('sun-icon').classList.remove('hidden');
-                document.getElementById('moon-icon').classList.add('hidden');
-            }
-        }
-
-        // Live fields persistence configuration (Standard Local Storage Setup)
         const trackedInputs = ['first-name', 'last-name', 'phone', 'email', 'subject', 'body'];
 
         function saveAndSync() {
@@ -283,34 +228,16 @@
                 localStorage.removeItem(`quicklink_${id}`);
             });
             updateLivePreviews();
-            showAlert('Drafts Swept Clean', 'All input forms and locally saved configurations have been cleared from this device.', 'info');
+            showAlert('Drafts Swept Clean', 'All forms have been cleared from local storage.', 'info');
         }
 
-        // Live draft dynamic composition calculations
+        // Clean parameters composition logic
         function getConstructedSMS() {
-            const firstName = document.getElementById('first-name').value.trim();
-            const lastName = document.getElementById('last-name').value.trim();
-            const body = document.getElementById('body').value.trim();
-
-            const nameHeader = (firstName || lastName) ? `Hi, this is ${firstName} ${lastName}. ` : '';
-            return `${nameHeader}${body}`;
+            return document.getElementById('body').value;
         }
 
         function getConstructedEmail() {
-            const firstName = document.getElementById('first-name').value.trim();
-            const lastName = document.getElementById('last-name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const body = document.getElementById('body').value.trim();
-
-            const fullName = `${firstName} ${lastName}`.trim();
-            let senderSection = '';
-            if (fullName || phone) {
-                senderSection = `Sender Details:\n`;
-                if (fullName) senderSection += `- Name: ${fullName}\n`;
-                if (phone) senderSection += `- Contact: ${phone}\n`;
-                senderSection += `\n-------------------------\n\n`;
-            }
-            return `${senderSection}${body}`;
+            return document.getElementById('body').value;
         }
 
         function updateLivePreviews() {
@@ -337,7 +264,6 @@
             }
         }
 
-        // Custom Modal UI Alerts (to prevent Safari/Chrome default iFrame alert system breaks)
         function showAlert(title, message, type = 'info') {
             const alertBox = document.getElementById('custom-alert');
             const alertTitle = document.getElementById('alert-title');
@@ -347,7 +273,6 @@
             alertTitle.textContent = title;
             alertMessage.textContent = message;
 
-            // Render dynamic icon based on visual intent
             if (type === 'error') {
                 iconContainer.className = "mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400";
                 iconContainer.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
@@ -363,6 +288,7 @@
             }, 10);
         }
 
+        // Close Alert
         function closeAlert() {
             const alertBox = document.getElementById('custom-alert');
             alertBox.classList.add('opacity-0');
@@ -372,46 +298,37 @@
             }, 200);
         }
 
-        // SMS System Handshake Execution
+        // Send SMS Handshake Execution
         function triggerSMS() {
             const rawPhone = document.getElementById('phone').value.trim();
-            const bodyContent = getConstructedSMS().trim();
+            const bodyContent = getConstructedSMS();
 
             if (!rawPhone) {
                 showAlert('Missing Phone Number', 'Please enter a target Phone Number to initialize the iMessage dispatch protocol.', 'error');
                 return;
             }
 
-            // Remove non-alphanumeric configuration symbols for raw iOS sms routing mapping
             const phoneCleaned = rawPhone.replace(/[^\d+]/g, '');
             const encodedBody = encodeURIComponent(bodyContent);
 
-            // iOS absolute requirement format is standard [sms:{phone}&body={text}]
-            const smsURI = `sms:${phoneCleaned}&body=${encodedBody}`;
-            
-            // Execute iOS system app dispatch 
-            window.location.href = smsURI;
+            window.location.href = `sms:${phoneCleaned}&body=${encodedBody}`;
         }
 
-        // Email System Handshake Execution
+        // Send Email Handshake Execution
         function triggerEmail() {
             const emailTarget = document.getElementById('email').value.trim();
             const rawSubject = document.getElementById('subject').value.trim();
-            const emailBodyContent = getConstructedEmail().trim();
+            const emailBodyContent = getConstructedEmail();
 
             if (!emailTarget) {
                 showAlert('Missing Email Recipient', 'Please configure a target Email Address to compose this mail transaction.', 'error');
                 return;
             }
 
-            const encodedSubject = encodeURIComponent(rawSubject || 'Automated Communication - QuickLink');
+            const encodedSubject = encodeURIComponent(rawSubject || 'Automated Communication');
             const encodedBody = encodeURIComponent(emailBodyContent);
 
-            // Mailto query uses standard parameter separator formatting [?] then [&]
-            const mailtoURI = `mailto:${emailTarget}?subject=${encodedSubject}&body=${encodedBody}`;
-
-            // Execute iOS system app dispatch
-            window.location.href = mailtoURI;
+            window.location.href = `mailto:${emailTarget}?subject=${encodedSubject}&body=${encodedBody}`;
         }
     </script>
 </body>
