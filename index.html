@@ -62,7 +62,7 @@
                 <span class="text-xs font-semibold tracking-widest text-blue-500 uppercase">iOS Communication Hub</span>
                 <div class="flex items-baseline gap-2">
                     <h1 class="text-2xl font-bold tracking-tight mt-0.5">QuickLink PWA</h1>
-                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full">v1.1</span>
+                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full">v1.2</span>
                 </div>
             </div>
             
@@ -85,9 +85,9 @@
                     </svg>
                 </div>
                 <div>
-                    <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Clean Dispatch Environment</h4>
+                    <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Personalized Dispatch</h4>
                     <p class="text-xs text-blue-700/80 dark:text-blue-300/70 mt-0.5 leading-relaxed">
-                        Buttons launch native applications using <b>only</b> the clean contents of your Message Body. No automated headers or templates are appended.
+                        Entering a first name automatically prefixes messages with a customized greeting tailored for SMS and Email configurations.
                     </p>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                 <div class="space-y-3">
                     <div>
                         <span class="text-[11px] font-medium text-slate-400 block mb-1">Generated SMS Preview:</span>
-                        <div id="sms-preview" class="text-xs p-3 rounded-xl bg-slate-200/40 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 italic break-words min-h-[40px]">
+                        <div id="sms-preview" class="text-xs p-3 rounded-xl bg-slate-200/40 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 italic whitespace-pre-wrap break-words min-h-[40px]">
                             Awaiting text...
                         </div>
                     </div>
@@ -241,13 +241,24 @@
             showAlert('Drafts Swept Clean', 'All forms have been cleared from local storage.', 'info');
         }
 
-        // Clean parameters composition logic - STRICTLY outputting ONLY the textarea contents.
+        // SMS logic: "Hello [first name].\n[body]" (with graceful fallback if first name is empty)
         function getConstructedSMS() {
-            return document.getElementById('body').value;
+            const firstName = document.getElementById('first-name').value.trim();
+            const body = document.getElementById('body').value;
+            if (firstName) {
+                return `Hello ${firstName}.\n${body}`;
+            }
+            return body;
         }
 
+        // Email logic: "Hello [first name],\n\n[body]" (with graceful fallback if first name is empty)
         function getConstructedEmail() {
-            return document.getElementById('body').value;
+            const firstName = document.getElementById('first-name').value.trim();
+            const body = document.getElementById('body').value;
+            if (firstName) {
+                return `Hello ${firstName},\n\n${body}`;
+            }
+            return body;
         }
 
         function updateLivePreviews() {
