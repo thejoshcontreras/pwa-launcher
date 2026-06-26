@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>QuickLink App Launcher</title>
     
+    <!-- PWA & iOS Customization Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="QuickLink">
     
+    <!-- Default Touch Icon (iOS App Icon) using an elegant SVG representing links and communication -->
     <link class="dark-hidden" rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180' width='180' height='180'><rect width='180' height='180' rx='40' fill='%23007AFF'/><path d='M50 90c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40z' fill='none' stroke='white' stroke-width='8'/><path d='M70 75 l40 30 M70 105 l40 -30' stroke='white' stroke-width='10' stroke-linecap='round'/></svg>">
 
+    <!-- Tailwind CSS Engine for Native Looks -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -50,12 +53,17 @@
 </head>
 <body class="h-full bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
 
+    <!-- App Container (Constrained viewport matching mobile look beautifully) -->
     <div class="flex flex-col h-full max-w-md mx-auto relative overflow-hidden bg-white dark:bg-slate-950 border-x border-slate-200/50 dark:border-slate-800/50 shadow-2xl">
         
+        <!-- Premium Header Panel -->
         <header class="pt-12 pb-4 px-6 border-b border-slate-100 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 sticky top-0 z-50 ios-blur flex justify-between items-center">
             <div>
                 <span class="text-xs font-semibold tracking-widest text-blue-500 uppercase">iOS Communication Hub</span>
-                <h1 class="text-2xl font-bold tracking-tight mt-0.5">QuickLink PWA</h1>
+                <div class="flex items-baseline gap-2">
+                    <h1 class="text-2xl font-bold tracking-tight mt-0.5">QuickLink PWA</h1>
+                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full">v1.1</span>
+                </div>
             </div>
             
             <div class="flex gap-2">
@@ -67,6 +75,7 @@
             </div>
         </header>
 
+        <!-- Main Workspace (Scrollable area) -->
         <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6 no-scrollbar pb-24">
             
             <div class="bg-blue-50/70 dark:bg-blue-950/20 border border-blue-100/50 dark:border-blue-900/30 rounded-2xl p-4 flex items-start gap-3">
@@ -76,9 +85,9 @@
                     </svg>
                 </div>
                 <div>
-                    <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Device Handshake Ready</h4>
+                    <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Clean Dispatch Environment</h4>
                     <p class="text-xs text-blue-700/80 dark:text-blue-300/70 mt-0.5 leading-relaxed">
-                        Values entered below persist inside your browser. Buttons automatically launch your native apps without adding automated template text.
+                        Buttons launch native applications using <b>only</b> the clean contents of your Message Body. No automated headers or templates are appended.
                     </p>
                 </div>
             </div>
@@ -131,6 +140,7 @@
                 </div>
             </div>
 
+            <!-- Previews Panel -->
             <div class="bg-slate-100/50 dark:bg-slate-900/30 border border-slate-200/40 dark:border-slate-800/60 rounded-2xl p-5 space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Live Draft Preview</h3>
@@ -158,7 +168,7 @@
         <div id="custom-alert" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm hidden transition-opacity duration-200 opacity-0">
             <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-100 dark:border-slate-800 transform scale-95 transition-transform duration-200">
                 <div id="alert-icon-container" class="mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                    </div>
+                </div>
                 <h3 id="alert-title" class="text-center text-lg font-bold">Alert Title</h3>
                 <p id="alert-message" class="text-center text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Alert descriptions</p>
                 <div class="mt-6">
@@ -231,7 +241,7 @@
             showAlert('Drafts Swept Clean', 'All forms have been cleared from local storage.', 'info');
         }
 
-        // Clean parameters composition logic
+        // Clean parameters composition logic - STRICTLY outputting ONLY the textarea contents.
         function getConstructedSMS() {
             return document.getElementById('body').value;
         }
