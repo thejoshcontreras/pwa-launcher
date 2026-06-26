@@ -62,7 +62,7 @@
                 <span class="text-xs font-semibold tracking-widest text-blue-500 uppercase">iOS Communication Hub</span>
                 <div class="flex items-baseline gap-2">
                     <h1 class="text-2xl font-bold tracking-tight mt-0.5">QuickLink PWA</h1>
-                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full">v1.2</span>
+                    <span class="text-xs font-semibold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 rounded-full">v1.4</span>
                 </div>
             </div>
             
@@ -77,25 +77,10 @@
 
         <!-- Main Workspace (Scrollable area) -->
         <main class="flex-1 overflow-y-auto px-6 py-6 space-y-6 no-scrollbar pb-24">
-            
-            <div class="bg-blue-50/70 dark:bg-blue-950/20 border border-blue-100/50 dark:border-blue-900/30 rounded-2xl p-4 flex items-start gap-3">
-                <div class="p-2 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <div>
-                    <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">Personalized Dispatch</h4>
-                    <p class="text-xs text-blue-700/80 dark:text-blue-300/70 mt-0.5 leading-relaxed">
-                        Entering a first name automatically prefixes messages with a customized greeting tailored for SMS and Email configurations.
-                    </p>
-                </div>
-            </div>
 
             <div class="space-y-4">
                 <div class="flex justify-between items-center px-1">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contact Details</h2>
-                    <span class="text-[10px] text-green-500 font-medium bg-green-50 dark:bg-green-950/30 px-2 py-0.5 rounded-full border border-green-100/50 dark:border-green-900/20">Auto-saved</span>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
@@ -144,7 +129,7 @@
             <div class="bg-slate-100/50 dark:bg-slate-900/30 border border-slate-200/40 dark:border-slate-800/60 rounded-2xl p-5 space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Live Draft Preview</h3>
-                    <span class="text-[10px] bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-semibold px-2 py-0.5 rounded-md">Clean Output</span>
+                    <span class="text-[10px] bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-semibold px-2 py-0.5 rounded-md">Realtime Output</span>
                 </div>
                 
                 <div class="space-y-3">
@@ -241,20 +226,32 @@
             showAlert('Drafts Swept Clean', 'All forms have been cleared from local storage.', 'info');
         }
 
-        // SMS logic: "Hello [first name].\n[body]" (with graceful fallback if first name is empty)
+        // SMS logic: "Hello [first name].\n[body]"
         function getConstructedSMS() {
-            const firstName = document.getElementById('first-name').value.trim();
-            const body = document.getElementById('body').value;
+            const firstNameEl = document.getElementById('first-name');
+            const bodyEl = document.getElementById('body');
+            
+            if (!firstNameEl || !bodyEl) return '';
+            
+            const firstName = firstNameEl.value.trim();
+            const body = bodyEl.value;
+            
             if (firstName) {
                 return `Hello ${firstName}.\n${body}`;
             }
             return body;
         }
 
-        // Email logic: "Hello [first name],\n\n[body]" (with graceful fallback if first name is empty)
+        // Email logic: "Hello [first name],\n\n[body]"
         function getConstructedEmail() {
-            const firstName = document.getElementById('first-name').value.trim();
-            const body = document.getElementById('body').value;
+            const firstNameEl = document.getElementById('first-name');
+            const bodyEl = document.getElementById('body');
+            
+            if (!firstNameEl || !bodyEl) return '';
+            
+            const firstName = firstNameEl.value.trim();
+            const body = bodyEl.value;
+            
             if (firstName) {
                 return `Hello ${firstName},\n\n${body}`;
             }
